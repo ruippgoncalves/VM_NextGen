@@ -1,0 +1,8 @@
+{
+    "name": "ewvm-workspace",
+    "workspaces": [
+        "ewvm",
+        "backend",
+        "frontend"
+    ]
+}

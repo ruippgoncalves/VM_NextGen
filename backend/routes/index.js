@@ -7,9 +7,7 @@ const router = express.Router();
 const peggy = require("peggy");
 
 // Importações dos teus módulos locais (mantêm-se iguais)
-const grammar = require('../public/javascripts/grammar.js');
-const { manual } = require('../public/javascripts/manual.js');
-const vm = require('../public/javascripts/vm.js');
+const {grammar, manual, vm} = require('ewvm');
 const EphemeralStorage = require('../util/EphemeralStorage.js');
 const makeId = require('../util/makeId.js');
 
