@@ -120,14 +120,3 @@ var manual = [
 
 
 module.exports = {manual};
-
-function hide_div(arrow, div){
-  $(arrow).toggleClass('fa-angle-down fa-angle-up');
-
-  var x = document.getElementById(div);
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
