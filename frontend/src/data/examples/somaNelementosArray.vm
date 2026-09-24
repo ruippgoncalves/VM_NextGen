@@ -1,0 +1,111 @@
+; ALOCACAO DE VARIAVEIS GLOBAIS
+    pushi 0 ; gp[0] - N (tamanho do array)
+    pushi 0 ; gp[1] - Endereco do Array na Heap
+    pushi 0 ; gp[2] - Soma total
+    pushi 0 ; gp[3] - i (contador de ciclos)
+
+    start
+
+; 1. LER O VALOR DE N
+    pushs "Introduza o numero de elementos (N): "
+    writes
+    read
+    atoi
+    storeg 0
+
+; 2. ALOCAR O ARRAY
+; allocn retira o tamanho (N) do topo da pilha e devolve um endereco 
+    pushg 0
+    allocn
+    storeg 1
+
+; Inicializar o contador i = 0
+    pushi 0
+    storeg 3
+
+
+; ==========================================
+; 3. CICLO DE LEITURA DOS ELEMENTOS
+; ==========================================
+lerarray:
+    ; Condicao: while(i < N)
+    pushg 3 ; i
+    pushg 0 ; N
+    inf
+    jz fimleitura
+
+    pushs "Introduza um numero para a posicao ["
+    writes
+    pushg 3
+    writei
+    pushs "]: "
+    writes
+
+    ; A instrucao 'storen' espera 3 elementos na pilha (da base para o topo):
+    ; 1. Endereco do Array
+    ; 2. Indice
+    ; 3. Valor
+    pushg 1 ; Empilha endereco (a)
+    pushg 3 ; Empilha indice (n)
+    read
+    atoi    ; Empilha o input do utilizador, que serve de valor (v)
+    storen  ; a[n] = v
+
+    ; i = i + 1
+    pushg 3
+    pushi 1
+    add
+    storeg 3
+    jump lerarray
+
+    fimleitura:
+
+
+; ==========================================
+; 4. CICLO DA SOMA
+; ==========================================
+; Reiniciar variaveis
+    pushi 0
+    storeg 2 ; soma = 0
+    pushi 0
+    storeg 3 ; i = 0
+
+somararray:
+    ; Condicao: while(i < N)
+    pushg 3
+    pushg 0
+    inf
+    jz fimsoma
+
+    ; A instrucao 'loadn' espera 2 elementos na pilha (da base para o topo):
+    ; 1. Endereco do Array
+    ; 2. Indice
+    pushg 1 ; Empilha endereco (a)
+    pushg 3 ; Empilha indice (n)
+    loadn   ; Vai a memoria e empilha a[n]
+
+    ; soma = soma + a[n]
+    pushg 2
+    add
+    storeg 2
+
+    ; i = i + 1
+    pushg 3
+    pushi 1
+    add
+    storeg 3
+    jump somararray
+
+fimsoma:
+
+
+; ==========================================
+; 5. IMPRIMIR O RESULTADO
+; ==========================================
+    pushs "\n>> A soma de todos os elementos e: "
+    writes
+    pushg 2
+    writei
+    writeln
+
+stop

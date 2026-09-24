@@ -1,8 +1,13 @@
 {
     "name": "ewvm-workspace",
+    "private": true,
     "workspaces": [
         "ewvm",
-        "backend",
         "frontend"
-    ]
+    ],
+    "scripts": {
+        "build": "npm run build:ewvm && npm run build:frontend",
+        "build:ewvm": "npm run build --workspace=ewvm",
+        "build:frontend": "npm run build --workspace=frontend"
+    }
 }

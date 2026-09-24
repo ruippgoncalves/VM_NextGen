@@ -1,17 +1,17 @@
 start
     pushs "Função simples que escreve 77 no monitor: "
     writes
-    // Coloca-se a label da função na stack
+    ; Coloca-se a label da função na stack
     pusha f1
-    // Chama-se a função
+    ; Chama-se a função
     call
-    // Depois de retornarmos da função...
+    ; Depois de retornarmos da função...
     writeln
     pushs "That's all folks!"
     writes
 stop
 
-// Definição da função
+; Definição da função
 f1:
     pushi 77
     writei

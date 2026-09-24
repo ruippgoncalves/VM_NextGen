@@ -1,20 +1,8 @@
 services:
-  backend:
-    build: 
-      context: ./backend
-    container_name: ewvm_api_prod
-    restart: always
-    environment:
-      - NODE_ENV=production
-      - PORT=50520
-    # Nota: Sem volumes locais e corre o CMD ["npm", "start"] padrão do Dockerfile (sem --watch)
-
   frontend:
     build: 
-      context: ./frontend
+      context: .
     container_name: ewvm_web_prod
     restart: always
     ports:
-      - "50520:80" # O Nginx agora responde na porta padrão HTTP
-    depends_on:
-      - backend
+      - "50520:80"

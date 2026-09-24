@@ -6,14 +6,18 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
+    "type-check": "tsc --noEmit",
     "preview": "vite preview"
   },
   "dependencies": {
     "@guolao/vue-monaco-editor": "^1.5.4",
+    "ewvm": "file:../ewvm",
     "vue": "^3.4.21"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
-    "vite": "^5.1.4"
+    "typescript": "^5.4.2",
+    "vite": "^5.1.4",
+    "vue-tsc": "^2.0.6"
   }
 }
