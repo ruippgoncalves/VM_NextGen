@@ -1,0 +1,13 @@
+{
+  "comments": {
+    "lineComment": {
+      "comment": ";"
+    }
+  },
+  "autoClosingPairs": [
+    { "open": "\"", "close": "\"" }
+  ],
+  "surroundingPairs": [
+    ["\"", "\""]
+  ]
+}

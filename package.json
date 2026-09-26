@@ -3,11 +3,15 @@
     "private": true,
     "workspaces": [
         "ewvm",
-        "frontend"
+        "ewvm-vue",
+        "frontend",
+        "ewvm-code"
     ],
     "scripts": {
-        "build": "npm run build:ewvm && npm run build:frontend",
+        "build": "npm run build:ewvm && npm run build:ewvm-vue && npm run build:ewvm-code && npm run build:frontend",
         "build:ewvm": "npm run build --workspace=ewvm",
+        "build:ewvm-vue": "npm run build --workspace=ewvm-vue",
+        "build:ewvm-code": "npm run package --workspace=ewvm-code",
         "build:frontend": "npm run build --workspace=frontend"
     }
 }

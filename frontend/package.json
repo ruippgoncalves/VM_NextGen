@@ -12,6 +12,7 @@
   "dependencies": {
     "@guolao/vue-monaco-editor": "^1.5.4",
     "ewvm": "file:../ewvm",
+    "ewvm-vue": "file:../ewvm-vue",
     "vue": "^3.4.21"
   },
   "devDependencies": {
