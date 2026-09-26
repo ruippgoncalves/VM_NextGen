@@ -5,7 +5,15 @@ import produtoNCode from './examples/produtoN.vm?raw';
 import somaNelementosArrayCode from './examples/somaNelementosArray.vm?raw';
 import squareRepeatFunctionCode from './examples/square-repeat-function.vm?raw';
 import squareRepeatCode from './examples/square-repeat.vm?raw';
-import type { Example } from '../types';
+
+export interface Example {
+  title: string;
+  category: string;
+  description: string;
+  difficulty: number;
+  file?: string;
+  code: string;
+}
 
 export const examples: Example[] = [
   {

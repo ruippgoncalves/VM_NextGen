@@ -1,0 +1,71 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "EWVM",
+  "scopeName": "source.ewvm",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#identifiers"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.semicolon.ewvm",
+          "match": ";.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.ewvm",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.ewvm",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.ewvm",
+          "match": "\\b[+\\-]?[0-9]+(\\.[0-9]+)?\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.instruction.ewvm",
+          "match": "(?i)\\b(ADD|SUB|MUL|DIV|MOD|NOT|INF|INFEQ|SUP|SUPEQ|FADD|FSUB|FMUL|FDIV|FCOS|FSIN|FINF|FINFEQ|FSUP|FSUPEQ|PADD|CONCAT|CHRCODE|STRLEN|CHARAT|ALLOC|ALLOCN|FREE|POPST|EQUAL|ATOI|ATOF|ITOF|FTOI|STRI|STRF|PUSHI|PUSHN|PUSHF|PUSHS|PUSHG|PUSHL|PUSHSP|PUSHFP|PUSHGP|PUSHST|LOAD|LOADN|DUP|DUPN|COPY|COPYN|POP|POPN|STOREL|STOREG|STORE|STOREN|CHECK|SWAP|AND|OR|WRITEI|WRITEF|WRITES|WRITELN|WRITECHR|READ|PUSHA|JUMP|JZ|CALL|RETURN|START|NOP|ERR|STOP)\\b"
+        }
+      ]
+    },
+    "identifiers": {
+      "patterns": [
+        {
+          "name": "variable.other.ewvm",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+        }
+      ]
+    }
+  }
+}
