@@ -1,4 +1,5 @@
-import type { CategoryDoc } from '../types';
+export type SubCategoryDoc = [string, Record<string, string>];
+export type CategoryDoc = [string, SubCategoryDoc[] | Record<string, string>];
 
 export const manualDocs: CategoryDoc[] = [
   ["Base Operations", [

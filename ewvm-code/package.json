@@ -3,6 +3,7 @@
   "displayName": "EWVM for VS Code",
   "description": "Visual execution and debugging tool for EWVM virtual machine",
   "version": "0.0.0",
+  "type": "module",
   "publisher": "ewvm",
   "repository": {
     "type": "git",
