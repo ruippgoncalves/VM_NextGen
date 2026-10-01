@@ -114,7 +114,7 @@ export enum SyntaxTokenKind {
   
   Linebreak,
   Whitespace,
-  CommentSemicolon,
+  CommentStart,
   Comment,
 
   Eos,
@@ -238,17 +238,17 @@ export class CommentTriviaSyntaxNode extends SyntaxTrivia {
   public override readonly text: string
 
   constructor(
-    public readonly semicolonToken: SyntaxToken,
+    public readonly startToken: SyntaxToken,
     public readonly commentToken: SyntaxToken
   ) {
     super()
-    semicolonToken.parent = this
+    startToken.parent = this
     commentToken.parent = this
-    this.children = [semicolonToken, commentToken]
-    this.isMissing = semicolonToken.isMissing || commentToken.isMissing
-    this.text = semicolonToken.text + commentToken.text
+    this.children = [startToken, commentToken]
+    this.isMissing = startToken.isMissing || commentToken.isMissing
+    this.text = startToken.text + commentToken.text
 
-    const start = semicolonToken.span.position
+    const start = startToken.span.position
     const end = commentToken.span.position + commentToken.span.width
     this.span = { position: start, width: end - start }
   }

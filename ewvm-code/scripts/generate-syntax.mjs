@@ -30,8 +30,8 @@ const syntax = {
     comments: {
       patterns: [
         {
-          name: 'comment.line.semicolon.ewvm',
-          match: ';.*$'
+          name: 'comment.line.slash.ewvm',
+          match: '//.*$'
         }
       ]
     },

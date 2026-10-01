@@ -138,7 +138,7 @@ export class Lexer {
 
         continue
       }
-      
+
       unescaped += this.advance()
     }
 
@@ -192,7 +192,7 @@ export class Lexer {
           if (isTrailing) return trivia
           break
 
-        case ';':
+        case '/':
           trivia.push(this.lexComment())
           break
 
@@ -224,20 +224,31 @@ export class Lexer {
 
   private lexComment(): CommentTriviaSyntaxNode {
     const semiStart = this.position
-    this.advance() // ';'
+    this.advance()
+    const finished = this.peek() == '/'
+    if (finished) this.advance()
 
     const semiTrailing: SyntaxTrivia[] = []
     if (this.peek() === ' ' || this.peek() === '\t') {
       semiTrailing.push(this.lexWhitespace())
     }
 
-    const semicolonToken = new SyntaxToken(
-      SyntaxTokenKind.CommentSemicolon,
-      ';',
+    const startToken = new SyntaxToken(
+      SyntaxTokenKind.CommentStart,
+      '//',
       semiStart,
       [],
       semiTrailing
     )
+
+    if (!finished) startToken.addDiagnostic({
+      id: { namespace: 'Syntax', id: 1000, severity: DiagnosticSeverity.Error, flags: new Set() },
+      span: {
+        position: semiStart,
+        width: 1
+      },
+      message: 'Unterminated comment'
+    })
 
     // Read comment text
     const commentStart = this.position
@@ -256,7 +267,7 @@ export class Lexer {
       commentText
     )
 
-    return new CommentTriviaSyntaxNode(semicolonToken, commentToken)
+    return new CommentTriviaSyntaxNode(startToken, commentToken)
   }
 
   private lexErrorTrivia(): ErrorTriviaSyntaxNode {

@@ -198,7 +198,7 @@ const handleEditorBeforeMount = (monaco: any) => {
         [/[+\-]?\d+/, 'number'],
         [/".*?"/, 'string'],
         [new RegExp(instsRegex, 'i'), 'keyword'],
-        [/;.*/, 'comment'],
+        [/\/\/.*/, 'comment'],
         [/[A-Za-z_][A-Za-z0-9_]*/, 'identifier']
       ]
     }
